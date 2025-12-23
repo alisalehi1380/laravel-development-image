@@ -44,10 +44,10 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ steps.repo.outputs.name }}
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
-          labels: |
-            org.opencontainers.image.source=https://github.com/alisalehi1380/laravel-development-image
-            org.opencontainers.image.description="development image for laravel"
-            org.opencontainers.image.licenses=MIT
+#          labels: |
+#            org.opencontainers.image.source=https://github.com/alisalehi1380/laravel-development-image
+#            org.opencontainers.image.description="development image for laravel"
+#            org.opencontainers.image.licenses=MIT
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
