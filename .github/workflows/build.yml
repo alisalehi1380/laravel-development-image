@@ -44,7 +44,7 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ steps.repo.outputs.name }}
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
-          label: |
+          labels: |
             org.opencontainers.image.source=https://github.com/alisalehi1380/laravel-development-image
             org.opencontainers.image.description="development image for laravel"
             org.opencontainers.image.licenses=MIT
