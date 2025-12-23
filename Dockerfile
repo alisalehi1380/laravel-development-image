@@ -1,11 +1,11 @@
-LABEL maintainer="Ali Salehi <alisalehi.dev@gmail.com>"
-
 ARG REGISTRY
 
 # =================================================================
 # Development image
 # =================================================================
 FROM ${REGISTRY}/serversideup/php:8.2-fpm-nginx AS development
+
+LABEL maintainer="Ali Salehi <alisalehi.dev@gmail.com>"
 
 USER root
 
