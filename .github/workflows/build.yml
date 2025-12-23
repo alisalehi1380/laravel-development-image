@@ -10,7 +10,7 @@ permissions:
   packages: write
 
 env:
-  REGISTRY: ghcr.io
+  REGISTRY: ghcr.io/${{ github.actor }}
 
 jobs:
   build-image:
