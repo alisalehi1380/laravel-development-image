@@ -15,6 +15,12 @@ env:
 jobs:
   build-image:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        variant:
+          - linux/amd64
+          - linux/arm64
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -53,11 +59,20 @@ jobs:
           file: ./Dockerfile
           push: true
           target: development
+          platforms: ${{ matrix.platforms }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: REGISTRY=${{ env.REGISTRY }}
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ steps.repo.outputs.name }}:cache
-          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ steps.repo.outputs.name }}:cache,mode=max
+#          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ steps.repo.outputs.name }}:cache
+#          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ steps.repo.outputs.name }}:cache,mode=max
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+#          outputs: type=image,name=target,annotation-index.org.opencontainers.image.description=My multi-arch image
+          label: |
+            org.opencontainers.image.source=https://github.com/alisalehi1380/laravel-development-image
+            org.opencontainers.image.description="development image for laravel"
+            org.opencontainers.image.platforms=${{ matrix.platforms }}
+            org.opencontainers.image.licenses=MIT
 
       - name: Image digest
         run: echo ${{ steps.build.outputs.digest }}
