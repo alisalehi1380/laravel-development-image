@@ -1,7 +1,7 @@
 # =================================================================
 # Development image
 # =================================================================
-FROM serversideup/php:8.2-fpm-nginx AS development
+FROM ghcr.io/serversideup/php:8.2-fpm-nginx AS development
 
 LABEL maintainer="Ali Salehi <alisalehi.dev@gmail.com>"
 
